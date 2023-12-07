@@ -1,8 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div
-      class="mr-5 flex items-center justify-between gap-3"
-    >
+    <div class="mr-5 flex items-center justify-between gap-3">
       <div class="lg:flex-1 flex items-center gap-1.5">
         <img src="/logo.webp" alt="logo" height="75" width="75" />
       </div>
@@ -35,11 +33,13 @@
       <slot />
     </div>
   </div>
-  <AppMenu
-    :pages="pages"
-    v-if="isMenuOpen"
-    @close-menu="() => (isMenuOpen = false)"
-  />
+  <transition name="slide-up" mode="out-in">
+    <AppMenu
+      :pages="pages"
+      v-if="isMenuOpen"
+      @close-menu="() => (isMenuOpen = false)"
+    />
+  </transition>
 </template>
 
 <script lang="ts" setup>
@@ -63,11 +63,13 @@ useSeoMeta({
   description: "the tool generate something you want",
   ogTitle: "Awesome Tool",
   ogDescription: "the tool generate something you want",
-  ogImage: "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
+  ogImage:
+    "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
   ogUrl: "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
   twitterTitle: "Awesome Tool",
   twitterDescription: "the tool generate something you want",
-  twitterImage: "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
+  twitterImage:
+    "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
   twitterCard: "summary",
 });
 useHead({

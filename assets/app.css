@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body * {
-  @apply transition duration-150 font-mono;
+  @apply transition duration-75 font-mono;
 }
