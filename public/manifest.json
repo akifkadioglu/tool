@@ -1,80 +1,80 @@
 {
   "short_name": "Awesome Tool",
   "name": "Awesome Tool",
-  "description": "the tool generate your manifest and image files",
-  "theme_color": "#3367D6",
-  "background_color": "#3367D6",
+  "description": "the tool generate something you want",
+  "theme_color": "#0891b2",
+  "background_color": "#0891b2",
   "display": "standalone",
   "icons": [
     {
-      "src": "./img/android-chrome-192x192.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./img/android-chrome-512x512.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "./img/android-chrome-maskable-192x192.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/android-chrome-maskable-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "./img/android-chrome-maskable-512x512.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/android-chrome-maskable-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "./img/apple-touch-icon-60x60.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/apple-touch-icon-60x60.png",
       "sizes": "60x60",
       "type": "image/png"
     },
     {
-      "src": "./img/apple-touch-icon-76x76.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/apple-touch-icon-76x76.png",
       "sizes": "76x76",
       "type": "image/png"
     },
     {
-      "src": "./img/apple-touch-icon-120x120.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/apple-touch-icon-120x120.png",
       "sizes": "120x120",
       "type": "image/png"
     },
     {
-      "src": "./img/apple-touch-icon-152x152.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/apple-touch-icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "./img/apple-touch-icon-180x180.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/apple-touch-icon-180x180.png",
       "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "./img/apple-touch-icon.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "./img/favicon-16x16.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/favicon-16x16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "./img/favicon-32x32.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "./img/msapplication-icon-144x144.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/msapplication-icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "./img/mstile-150x150.png",
+      "src": "https://raw.githubusercontent.com/akifkadioglu/images/main/img/mstile-150x150.png",
       "sizes": "150x150",
       "type": "image/png"
     }

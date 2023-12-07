@@ -1,10 +1,9 @@
 <template>
   <div class="container mx-auto">
     <div
-      class="mx-2 flex items-center justify-between gap-3 h-[--header-height]"
+      class="mr-5 flex items-center justify-between gap-3"
     >
       <div class="lg:flex-1 flex items-center gap-1.5">
-        <span class="font-semibold">Akif's Tool</span>
         <img src="/logo.webp" alt="logo" height="75" width="75" />
       </div>
       <ul class="items-center gap-x-8 hidden lg:flex">
@@ -24,37 +23,51 @@
             <Icon name="carbon:logo-github" size="25" />
           </NuxtLink>
         </button>
-        <button class="px-2 lg:hidden hover:bg-zinc-100">
+        <button
+          @click="isMenuOpen = !isMenuOpen"
+          class="px-2 lg:hidden hover:bg-zinc-100 z-10"
+        >
           <Icon name="material-symbols:list-rounded" size="25" />
         </button>
       </div>
     </div>
-    <slot />
+    <div class="mx-2">
+      <slot />
+    </div>
   </div>
+  <AppMenu
+    :pages="pages"
+    v-if="isMenuOpen"
+    @close-menu="() => (isMenuOpen = false)"
+  />
 </template>
 
 <script lang="ts" setup>
 const route = useRoute();
+const isMenuOpen = ref(false);
 const pages = [
   {
+    icon: "ph:house-light",
     url: routes.HOME,
     title: "Home",
   },
   {
+    icon: "ic:round-horizontal-rule",
     url: routes.MANIFEST,
     title: "Manifest",
   },
 ];
+
 useSeoMeta({
   title: "Awesome Tool",
   description: "the tool generate something you want",
   ogTitle: "Awesome Tool",
   ogDescription: "the tool generate something you want",
-  ogImage: "/card.png",
-  ogUrl: "/card.png",
+  ogImage: "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
+  ogUrl: "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
   twitterTitle: "Awesome Tool",
   twitterDescription: "the tool generate something you want",
-  twitterImage: "/card.png",
+  twitterImage: "https://raw.githubusercontent.com/akifkadioglu/images/main/card.png",
   twitterCard: "summary",
 });
 useHead({
@@ -65,11 +78,11 @@ useHead({
     {
       rel: "icon",
       type: "image/png",
-      href: "/favicon.ico",
+      href: "https://raw.githubusercontent.com/akifkadioglu/images/main/img/favicon.ico",
     },
     {
       rel: "manifest",
-      href: "/manifest.json",
+      href: "https://raw.githubusercontent.com/akifkadioglu/tool/main/public/manifest.json",
     },
   ],
 });
