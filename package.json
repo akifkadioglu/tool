@@ -11,8 +11,20 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/color-mode": "^3.3.2",
+    "@nuxtjs/tailwindcss": "^6.10.1",
+    "@pinia/nuxt": "^0.5.1",
+    "@vueuse/nuxt": "^10.7.0",
+    "autoprefixer": "^10.4.16",
     "nuxt": "^3.8.2",
+    "nuxt-icon": "^0.6.7",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
     "vue": "^3.3.10",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
+    "pinia": "^2.1.7"
   }
 }
