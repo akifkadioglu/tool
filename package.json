@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
-    "@img/sharp-win32-x64": "^0.33.0",
     "@nuxt/modules": "^0.6.0-ad2d27",
     "@nuxt/ui": "^2.11.0",
     "@nuxtjs/toast": "^3.3.1",
