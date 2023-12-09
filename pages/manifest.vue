@@ -87,7 +87,7 @@
             />
           </button>
         </div>
-        <pre class="overflow-x-scroll" v-html="result" />
+        <pre class="overflow-x-auto" v-html="result" />
       </div>
     </transition>
   </div>
