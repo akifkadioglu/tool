@@ -80,19 +80,21 @@
     <transition mode="out-in" name="slide-up">
       <div class="bg-zinc-100 p-5" v-if="result">
         <div class="flex justify-end">
-          <button @click="copy">
+          <button @click.prevent="copy">
             <Icon
               name="material-symbols:content-copy-outline"
               class="hover:scale-125"
             />
           </button>
         </div>
-        <pre v-html="result" />
+        <pre class="overflow-x-scroll" v-html="result" />
       </div>
     </transition>
   </div>
 </template>
 <script setup>
+import copyClipboard from "copy-to-clipboard";
+
 const store = useToastStore();
 const short_name = ref("");
 const name = ref("");
@@ -113,8 +115,8 @@ function take($event) {
   image.value = $event.target.files[0];
   imageUrl.value = URL.createObjectURL($event.target.files[0]);
 }
-function copy() {
-  navigator.clipboard.writeText(result.value);
+async function copy() {
+  copyClipboard(result.value);
   store.addToast("Copied 🥳", "", {
     bg: "bg-zinc-900",
     text: "text-white",

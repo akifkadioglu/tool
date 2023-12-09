@@ -1,10 +1,10 @@
 <template>
-  <div class="fixed bottom-10 right-10 space-y-5">
+  <div class="fixed bottom-10 left-0 right-0 space-y-5 mx-10">
     <TransitionGroup name="toast">
       <div v-for="(item, index) in toast.toasts" :key="index">
         <div
           :class="item.bg"
-          class="border flex w-96 justify-between items-center space-x-5 rounded p-3"
+          class="border flex max-w-sm justify-between items-center space-x-5 rounded p-3"
         >
           <div>
             <div
