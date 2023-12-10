@@ -1,18 +1,17 @@
-import Jimp from "jimp";
+import Resizer from "react-image-file-resizer";
 
-export const Resharp = (path: string) => {
-  if (path == "") {
-    return;
-  }
-  Jimp.read(path)
-    .then((lenna: any) => {
-      return lenna
-        .resize(256, 256) // resize
-        .quality(60) // set JPEG quality
-        .greyscale() // set greyscale
-        .write("lena-small-bw.jpg"); // save
-    })
-    .catch((err: any) => {
-      console.error(err);
-    });
-};
+export const resizeFile = (file: Blob, size: number, format: string) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      size,
+      size,
+      format,
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });

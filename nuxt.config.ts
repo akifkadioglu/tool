@@ -28,5 +28,5 @@ export default defineNuxtConfig({
     classSuffix: "",
     fallback: "dark",
   },
-  css: ["assets/app.css", "assets/animation.css"],
+  css: ["assets/app.css", "assets/animation.css"]
 });

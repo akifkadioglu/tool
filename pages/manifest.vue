@@ -1,82 +1,108 @@
 <template>
   <div class="space-y-5 mb-16 mt-5">
-    <div>
-      <input type="file" @input="take" />
-    </div>
-    <transition name="slide-up" mode="out-in">
-      <img
-        v-if="imageUrl"
-        class="px-10 mx-auto border border-zinc-200 bg-zinc-200"
-        :src="imageUrl"
-        alt="selected file"
-        width="350"
-      />
-    </transition>
-    <div class="space-y-3">
-      <div>
-        <div class="font-bold">short_name</div>
-        <input v-model="short_name" type="text" class="border" />
+    <div class="space-y-3 max-w-prose mx-auto text-center">
+      <div class="text-start">
+        <input type="file" accept="image/png, image/jpeg" @input="take" />
       </div>
-      <div>
-        <div class="font-bold">name</div>
-        <input v-model="name" type="text" class="border" />
+      <transition name="slide-up" mode="out-in">
+        <img
+          v-if="imageUrl"
+          class="px-10 mx-auto border border-zinc-100 bg-zinc-100"
+          :src="imageUrl"
+          alt="selected file"
+          width="350"
+        />
+      </transition>
+
+      <div class="grid sm:grid-cols-2 grid-cols-1">
+        <div class="px-2">
+          <div class="font-bold text-start text-start">short_name</div>
+          <input
+            v-model="short_name"
+            type="text"
+            class="border rounded-full px-3 py-1 focus:outline-none focus:border-zinc-300 bg-zinc-200 w-full"
+          />
+        </div>
+        <div class="px-2">
+          <div class="font-bold text-start">name</div>
+          <input
+            v-model="name"
+            type="text"
+            class="border rounded-full px-3 py-1 focus:outline-none focus:border-zinc-300 bg-zinc-200 w-full"
+          />
+        </div>
       </div>
 
-      <div>
-        <div class="font-bold">description</div>
-        <input v-model="description" type="text" class="border" />
-      </div>
-      <div>
-        <div class="font-bold">background_color</div>
-        <input v-model="background_color" type="color" class="border" />
-      </div>
-      <div>
-        <div class="font-bold">theme_color</div>
-        <input v-model="theme_color" type="color" class="border" />
+      <div class="px-2">
+        <div class="font-bold text-start">description</div>
+        <textarea
+          v-model="description"
+          rows="4"
+          class="border rounded px-3 py-1 focus:outline-none focus:border-zinc-300 bg-zinc-200 w-full"
+        />
       </div>
 
-      <div>
-        <div class="font-bold">id</div>
-        <input v-model="id" type="text" class="border" />
+      <div class="grid sm:grid-cols-2 grid-cols-1">
+        <div class="px-2">
+          <div class="font-bold text-start">id</div>
+          <input
+            v-model="id"
+            type="text"
+            class="border rounded-full px-3 py-1 focus:outline-none focus:border-zinc-300 bg-zinc-200 w-full"
+          />
+        </div>
+
+        <div class="px-2">
+          <div class="font-bold text-start">start_url</div>
+          <input
+            v-model="start_url"
+            type="text"
+            class="border rounded-full px-3 py-1 focus:outline-none focus:border-zinc-300 bg-zinc-200 w-full"
+          />
+        </div>
       </div>
 
-      <div>
-        <div class="font-bold">start_url</div>
-        <input v-model="start_url" type="text" class="border" />
+      <div class="px-2">
+        <div class="font-bold text-start">scope</div>
+        <input
+          v-model="scope"
+          type="text"
+          class="border rounded-full px-3 py-1 focus:outline-none focus:border-zinc-300 bg-zinc-200 w-full"
+        />
+      </div>
+      <div class="grid sm:grid-cols-2 grid-cols-1">
+        <div class="px-2 text-start">
+          <div class="font-bold">background_color</div>
+          <input v-model="background_color" type="color" />
+        </div>
+        <div class="px-2 text-start">
+          <div class="font-bold">theme_color</div>
+          <input v-model="theme_color" type="color" />
+        </div>
       </div>
 
-      <div>
-        <div class="font-bold">scope</div>
-        <input v-model="scope" type="text" class="border" />
-      </div>
-      <div>
-        <div class="font-bold">display</div>
-        <select v-model="display" name="" id="">
+      <div class="px-2">
+        <div class="font-bold text-start">display</div>
+        <select
+          v-model="display"
+          class="border rounded-full px-3 py-1 focus:outline-none focus:border-zinc-300 bg-zinc-200 w-full"
+        >
           <option value="fullscreen">fullscreen</option>
           <option value="standalone">standalone</option>
           <option value="minimal-ui">minimal-ui</option>
           <option value="browser">browser</option>
         </select>
       </div>
-    </div>
-    <div class="space-x-10">
-      <button
-        @click="generate"
-        class="border hover:bg-zinc-200 px-3 py-1 rounded"
-      >
-        Generate
-      </button>
-      <transition name="slide-up">
+
+      <div class="space-x-10">
         <button
-          v-if="imageUrl"
-          @click="install"
+          @click="generate"
           class="border hover:bg-zinc-200 px-3 py-1 rounded"
         >
-          install img folder
+          Generate
         </button>
-      </transition>
+      </div>
     </div>
-
     <transition mode="out-in" name="slide-up">
       <div class="bg-zinc-100 p-5" v-if="result">
         <div class="flex justify-end">
@@ -94,6 +120,7 @@
 </template>
 <script setup>
 import copyClipboard from "copy-to-clipboard";
+import JSZip from "jszip";
 
 const store = useToastStore();
 const short_name = ref("");
@@ -113,7 +140,11 @@ const image = ref("");
 const imageUrl = ref("");
 function take($event) {
   image.value = $event.target.files[0];
-  imageUrl.value = URL.createObjectURL($event.target.files[0]);
+  if (image.value != undefined && image.value != "") {
+    imageUrl.value = URL.createObjectURL(image.value);
+  } else {
+    imageUrl.value = "";
+  }
 }
 async function copy() {
   copyClipboard(result.value);
@@ -123,21 +154,23 @@ async function copy() {
     icon: "text-green-500",
   });
 }
-function generate() {
-  if (imageUrl.value != "") {
+async function generate() {
+  const zip = new JSZip();
+  if (image.value != undefined && image.value != "") {
+    const base64_1 = cleanBase64(await resizeFile(image.value, 192, "png"));
+    const base64_2 = cleanBase64(await resizeFile(image.value, 512, "png"));
+
+    addToZip(zip, base64_1, "icons-192.png");
+    addToZip(zip, base64_2, "icons-512.png");
+
     icons.value = [
       {
-        src: "/images/icons-vector.svg",
-        type: "image/svg+xml",
-        sizes: "512x512",
-      },
-      {
-        src: "/images/icons-192.png",
+        src: "/icons-192.png",
         type: "image/png",
         sizes: "192x192",
       },
       {
-        src: "/images/icons-512.png",
+        src: "/icons-512.png",
         type: "image/png",
         sizes: "512x512",
       },
@@ -159,12 +192,12 @@ function generate() {
     null,
     2
   );
-}
-async function install() {
-  store.addToast(
-    "Unavailable 😖",
-    "Unfortunatelly you cant install for now",
-    {}
-  );
+  zip.file("manifest.json", JSON.stringify(JSON.parse(result.value)));
+  const content = await zip.generateAsync({ type: "blob" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(content);
+  link.download = "public.zip";
+  link.click();
+  store.addToast("Generated 🎉🥳🎉", "Your public folder generated!!!", {});
 }
 </script>

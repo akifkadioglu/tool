@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-16 w-full h-full bg-white lg:hidden border-t p-5">
+  <div class="fixed top-20 w-full h-full bg-white lg:hidden border-t p-5">
     <ul class="container mx-auto font-semibold">
       <li v-for="(item, index) in pages" :key="index">
         <div
