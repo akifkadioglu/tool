@@ -56,6 +56,11 @@ const pages = [
     url: routes.MANIFEST,
     title: "Manifest",
   },
+  {
+    icon: "ic:round-horizontal-rule",
+    url: routes.JSON_TRANSFORM,
+    title: "JSON Transform",
+  },
 ];
 
 useSeoMeta({
